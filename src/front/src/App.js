@@ -13,6 +13,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Game from './Game';
 
 function Copyright() {
     return (
@@ -50,56 +51,43 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+function MenuBar() {
+    const classes = useStyles();
+
+    return (
+        <AppBar position="static">
+            <Toolbar>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <MenuIcon/>
+                </IconButton>
+                <Typography variant="h6" className={classes.title}>
+                    메뉴
+                </Typography>
+                <Button color="inherit">로그인</Button>
+            </Toolbar>
+        </AppBar>
+    );
+}
+
 export default function App() {
     const classes = useStyles();
 
     return (
         <Container component="main">
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        메뉴
-                    </Typography>
-                    <Button color="inherit">로그인</Button>
-                </Toolbar>
-            </AppBar>
-            <CssBaseline/>
+            <MenuBar />
             <Container maxWidth="xs">
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Hello World!
-                </Typography>
-                <form className={classes.form} noValidate>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="input"
-                        label="Hello World!"
-                        name="input"
-                        autoFocus
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                    >
-                        시작하기
-                    </Button>
-                </form>
-            </div>
-            <Box mt={8}>
-                <Copyright/>
-            </Box>
-        </Container>
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Hello World!
+                    </Typography>
+                    <Game />
+                </div>
+                <Box mt={8}>
+                    <Copyright/>
+                </Box>
+            </Container>
         </Container>
     );
 }
